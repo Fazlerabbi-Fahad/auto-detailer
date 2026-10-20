@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme {
+  --color-asphalt: #0b0c0e;
+  --color-graphite: #16181c;
+  --color-line: #24272d;
+  --color-chrome: #edeeea;
+  --color-muted: #9a9ea6;
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-text: var(--accent-text);
+
+  --font-display: var(--font-clash), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-satoshi), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  --asphalt: #0b0c0e;
+  --graphite: #16181c;
+  --line: #24272d;
+  --chrome: #edeeea;
+  --muted: #9a9ea6;
+  --accent: #7fd3ff;
+  --accent-ink: #0b0c0e;
+  --accent-text: #7fd3ff;
+
+  --section-y: clamp(5rem, 12vh, 9rem);
+  --page-x: clamp(1.25rem, 5vw, 6rem);
+  --bar-h: 0px;
+}
+
+html {
+  background: var(--asphalt);
+  color: var(--chrome);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+/* Layout helpers */
+.wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+.section {
+  padding-block: var(--section-y);
+}
+
+/* Type scale */
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.h-light {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+}
+.label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.price {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.25s,
+    box-shadow 0.25s;
+  white-space: nowrap;
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.btn-accent:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--chrome);
+}
+.btn-ghost:hover {
+  border-color: var(--muted);
+}
+
+/* "Your photos go here" pill */
+.photo-note {
+  position: absolute;
+  z-index: 3;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: rgb(11 12 14 / 0.72);
+  backdrop-filter: blur(6px);
+  color: var(--chrome);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.grain {
+  background-image: radial-gradient(
+    120% 80% at 80% 0%,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 60%
+  );
+}
